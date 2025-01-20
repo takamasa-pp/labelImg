@@ -523,12 +523,12 @@ class Canvas(QWidget):
         if self.current:
             self.current.paint(p)
             self.line.paint(p)
-        if self.selected_shape_copy:
+        p.drawRect(int(left_top.x()), int(left_top.y()), int(rect_width), int(rect_height))
             self.selected_shape_copy.paint(p)
 
         # Paint rect
-        if self.current is not None and len(self.line) == 2:
-            left_top = self.line[0]
+        p.drawLine(int(self.prev_point.x()), 0, int(self.prev_point.x()), int(self.pixmap.height()))
+            p.drawLine(0, int(self.prev_point.y()), int(self.pixmap.width()), int(self.prev_point.y()))
             right_bottom = self.line[1]
             rect_width = right_bottom.x() - left_top.x()
             rect_height = right_bottom.y() - left_top.y()
